@@ -1,2 +1,2 @@
 # Sudoku-game
-made by rushabh gandhi
+Made by Rushabh Gandhi ,Aakash Saroop And Pathik Ghugare
