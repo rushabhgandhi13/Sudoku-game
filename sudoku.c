@@ -1,4 +1,8 @@
 #include <stdio.h>
+//made by Rushabh Gandhi, Pathik Ghugare and Aakash Saroop 
+// Sample input is there at the end 
+
+void header();
 int repeat_row(int a[9][9], int row, int num);
 int repeat_col(int a[9][9], int col, int num);
 int repeat_box(int a[9][9], int startRow, int startCol, int num);
@@ -6,49 +10,18 @@ int is_safe_num(int a[9][9], int row, int col, int num);
 int find_empty(int a[9][9], int *row, int *col);
 int sudokusol(int a[9][9]);
 void print_sudoku(int a[9][9]);
-void horizontal_line()
-{
-    int x;
-    printf("|");
-    for(x=0; x<29; x++)
-        printf("-");
-    printf("| ");
-    printf("\n");
-}
-void grid_print(int a[9][9])
-{ int i,j;// i is the row no. and j is the column no.
-    for(i=0; i<9; i++)
-    {if(i%3==0)
-        horizontal_line();
-        for(j=0; j<9; j++)
-        {
-            if(j%3==0)
-                printf("|");
-            printf(" %d ",a[i][j]);
-            if(j==8)
-                printf("|");
-
-        }
-        printf("\n");
-        if(i==8)
-            horizontal_line();
-    }
-}
 int main() {
-    header();
+
     int a[9][9];
     int i,j;
+    header();
     for(i=0; i<9; i++)
         for(j=0; j<9; j++)
             scanf("%d",&a[i][j]);
-      printf("The grid that you have entered is:\n");
-      printf("\n");
-    grid_print(a);
 
-    printf("\n");
     if (sudokusol(a))
     {
-          printf("The solution to the sudoku  is\n");
+    	printf("SOLVED SUDOKU : \n");
         print_sudoku(a);
     } else
     {
@@ -56,42 +29,6 @@ int main() {
     }
 
     return 0;
-}
-void header(){
-    int i, j, k, n=6;
-    for(i = 0; i < n; i++)
-    {
-        for(j = 0; j < (2 * n); j++)
-        {
-            if(i + j <= n - 1)
-                printf("*");
-            else
-                printf(" ");
-            if((i + n) <= j)
-                printf("*");
-            else
-                printf(" ");
-        }
-        printf("\n");
-    }
-    printf("WELCOME TO SUDOKU SOLVER\n");
-    for(i = 0; i < n; i++)
-    {
-        for(j = 0; j < (2 * n); j++)
-        {
-            if(i >= j)
-                printf("*");
-            else
-                printf(" ");
-            if(i >= (2 * n - 1) - j)
-                printf("*");
-            else
-                printf(" ");
-        }
-        printf("\n");
-    }
-    printf("ENTER SUDOKU : \n");
-    printf("NOTE : PLEASE ENTER 0 FOR BLANK SPACE \n");
 }
 int repeat_row(int a[9][9], int row, int num){
     for (int col = 0; col < 9; col++) {
@@ -161,18 +98,68 @@ int sudokusol(int a[9][9]) {
 void print_sudoku(int a[9][9]) {
     for (int row = 0; row < 9; row++) {
         if(row%3==0)
-                   printf("|-----------------------------|\n");
+                   printf("-----------------------\n");
         for (int col = 0; col < 9; col++) {
             if(col%3==0)
                 printf("|");
-            printf("%2d ", a[row][col]);
+            printf("%2d", a[row][col]);
             if(col==8)
                 printf("|");
         }
         if(row==8)
         {
-            printf("\n|-----------------------------|");
+            printf("\n-----------------------");
         }
         printf("\n");
     }
 }
+
+void header(){
+    int i, j, k, n=6;
+    for(i = 0; i < n; i++)
+    {
+        for(j = 0; j < (2 * n); j++)
+        {
+            if(i + j <= n - 1)
+                printf("*");
+            else
+                printf(" ");
+            if((i + n) <= j)
+                printf("*");
+            else
+                printf(" ");
+        }
+        printf("\n");
+    }
+    printf("WELCOME TO SUDOKU SOLVER\n");
+    for(i = 0; i < n; i++)
+    {
+        for(j = 0; j < (2 * n); j++)
+        {
+            if(i >= j)
+                printf("*");
+            else
+                printf(" ");
+            if(i >= (2 * n - 1) - j)
+                printf("*");
+            else
+                printf(" ");
+        }
+        printf("\n");
+    }
+    printf("************************************\n");
+    printf("INSTRUCTIONS : \n************************************\nYOUR SUDOKU GRID IS TO BE ENTERED ROWWISE\nPUT SPACE BETWEEN TWO CONSECUTIVE NUMBERS\nSUBSTITUTE 0 AT UNSIGNED PLACES\nONCE ROW IS ENTERED PRESS ENTER TO GO TO NEXT ROW \n");
+    printf("************************************\n");
+    printf("ENTER SUDOKU : \n");
+}
+/**
+SAMPLE INPUT
+3 0 6 5 0 8 4 0 0 
+5 2 0 0 0 0 0 0 0
+0 8 7 0 0 0 0 3 1 
+0 0 3 0 1 0 0 8 0 
+9 0 0 8 6 3 0 0 5 
+0 5 0 0 9 0 6 0 0
+1 3 0 0 0 0 2 5 0
+0 0 0 0 0 0 0 7 4 
+0 0 5 2 0 6 3 0 0**/
